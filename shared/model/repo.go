@@ -12,6 +12,7 @@ const (
 var (
 	// default build timeout, in seconds
 	DefaultTimeout int64 = 7200
+	DefaultBranch = "master"
 )
 
 // RepoParams represents a set of private key value parameters

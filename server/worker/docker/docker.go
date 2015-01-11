@@ -128,7 +128,7 @@ func (d *Docker) Do(c context.Context, r *worker.Work) {
 		Name:   path,
 		Path:   r.Repo.CloneURL,
 		Scm:    r.Repo.Scm,
-		Branch: branch,
+		Branch: r.Commit.Branch,
 		Commit: r.Commit.Sha,
 		PR:     r.Commit.PullRequest,
 		Dir:    filepath.Join("/var/cache/drone/src", git.GitPath(script.Git, path)),
