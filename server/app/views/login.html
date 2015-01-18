@@ -11,7 +11,7 @@ minor modifications to the style that only apply to this view
 <article id="loginpage">
 	<div class="pure-g">
 		<div class="pure-u-1" ng-if="state == 1 && remotes.length != 0" ng-repeat="remote in remotes">
-			<a ng-href="/api/auth/{{ remote.type }}" target="_self" ng-if="remote.type != 'gitlab.com' && remote.type != 'gogs' ">
+			<a ng-href="/api/auth/{{ remote.type }}" target="_self" ng-if="remote.type != 'gitlab.com' && remote.type != 'gogs' && remote.type != 'trypod'">
 				<i class="fa {{ remote.type | remoteIcon }}"></i> {{ remote.type | remoteName }}
 			</a>
 			<a ng-href="/gitlab" ng-if="remote.type == 'gitlab.com' ">
@@ -19,6 +19,9 @@ minor modifications to the style that only apply to this view
 			</a>
 			<a ng-href="/gogs" ng-if="remote.type == 'gogs' ">
 				<i class="fa {{ remote.type | remoteIcon }}"></i> {{ remote.type | remoteName }}
+			</a>
+			<a ng-href="/trypod" ng-if="remote.type == 'trypod' ">
+				<i class="fa {{ remote.type | remoteIcon }}"></i>{{ remote.type | remoteName }}
 			</a>
 		</div>
 

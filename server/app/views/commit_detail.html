@@ -26,7 +26,16 @@
 </dd>
 <!-- /GOGS -->
 <!-- STASH -->
-<dd class="large" ng-if="repo.remote != 'gitlab.com' && repo.remote != 'github.com' && repo.remote != 'enterprise.github.com' && repo.remote != 'bitbucket.org' && repo.remote != 'gogs' ">
+<dd class="large" ng-if="repo.remote != 'gitlab.com' && repo.remote != 'github.com' && repo.remote != 'enterprise.github.com' && repo.remote != 'bitbucket.org' && repo.remote != 'gogs' && repo.remote != 'trypod'">
 	<strong>commit <u>{{ commit.sha | shortHash}}</u> to <u>{{ commit.branch }}</u> branch</strong>
 </dd>
 <!-- /STASH -->
+<!-- TRYPOD -->
+<dd class="large" ng-if="repo.remote == 'trypod'">
+	<strong>
+		commit
+		<a href="{{ repo.url }}/rev/{{ commit.sha }}">{{ commit.sha | shortHash}}</a>
+		to <a href="{{ repo.url }}/file/{{ commit.branch }}">{{ commit.branch }}</a> branch
+	</strong>
+</dd>
+<!-- /TRYPOD -->

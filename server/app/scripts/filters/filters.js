@@ -149,6 +149,7 @@
       case 'bitbucket.org'         : return 'Bitbucket';
       case 'stash.atlassian.com'   : return 'Atlassian Stash';
       case 'gogs'                  : return 'Gogs';
+      case 'trypod'                : return 'Trypod';
       }
     }
   }
@@ -166,6 +167,7 @@
       case 'bitbucket.org'         : return 'fa-bitbucket-square';
       case 'stash.atlassian.com'   : return 'fa-bitbucket-square';
       case 'gogs'                  : return 'fa-git-square';
+      case 'trypod'                : return 'fa-trypod-square';
       }
     }
   }

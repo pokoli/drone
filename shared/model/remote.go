@@ -7,6 +7,7 @@ const (
 	RemoteBitbucket        = "bitbucket.org"
 	RemoteStash            = "stash.atlassian.com"
 	RemoteGogs             = "gogs"
+	RemoteTrypod           = "trypod"
 )
 
 type Remote struct {

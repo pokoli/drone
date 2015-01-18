@@ -56,6 +56,10 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($ro
 			templateUrl: '/static/views/login_gogs.html',
 			title: 'Gogs Setup',
 		})
+		.when('/trypod', {
+			templateUrl: '/static/views/login_trypod.html',
+			title: 'Trypod Setup',
+		})
 		.when('/setup', {
 			templateUrl: '/static/views/setup.html',
 			controller: 'SetupController',
