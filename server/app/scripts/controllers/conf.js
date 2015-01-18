@@ -33,6 +33,10 @@ angular.module('app').controller("ConfigController", function($scope, $http, rem
 				case 'gogs':
 					$scope.gogs = remote;
 					break;
+
+				case 'trypod':
+					$scope.trypod = remote;
+					break;
 				}
 			}
 		})
