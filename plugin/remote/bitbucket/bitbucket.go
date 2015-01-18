@@ -149,11 +149,6 @@ func (r *Bitbucket) GetRepos(user *model.User) ([]*model.Repo, error) {
 	var hostname = r.GetHost()
 
 	for _, item := range list {
-		// for now we only support git repos
-		if item.Scm != "git" {
-			continue
-		}
-
 		// these are the urls required to clone the repository
 		// TODO use the bitbucketurl.Host and bitbucketurl.Scheme instead of hardcoding
 		//      so that we can support Stash.
