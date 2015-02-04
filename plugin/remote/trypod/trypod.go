@@ -8,7 +8,12 @@ import (
 	"time"
 	"encoding/json"
 
+	"gopkg.in/yaml.v1"
+
 	"github.com/drone/drone/shared/model"
+	"github.com/drone/drone/shared/build/script"
+	"github.com/drone/drone/plugin/notify"
+	"github.com/drone/drone/plugin/notify/webhook"
 )
 
 type Trypod struct {
@@ -137,7 +142,27 @@ func (r *Trypod) GetScript(user *model.User, repo *model.Repo, hook *model.Hook)
 		return nil, err
 	}
 	defer resp.Body.Close()
-	return ioutil.ReadAll(resp.Body)
+	var yml []byte
+	yml, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	script, _ := script.ParseBuild(string(yml))
+	if script.Notifications == nil {
+		script.Notifications = &notify.Notification{}
+	}
+	if script.Notifications.Webhook == nil {
+		script.Notifications.Webhook = &webhook.Webhook{}
+	}
+	webhook := script.Notifications.Webhook
+	webhook.URL = []string{r.url + "/notify"}
+	webhook.Success = true
+	webhook.Failure = true
+	yml, err = yaml.Marshal(script)
+	if err != nil {
+		return nil, err
+	}
+	return yml, nil
 }
 
 func (r *Trypod) Activate(user *model.User, repo *model.Repo, link string) error {
