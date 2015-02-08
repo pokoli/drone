@@ -172,3 +172,7 @@ func (r *Trypod) ParseHook(req *http.Request) (*model.Hook, error) {
 func (r *Trypod) OpenRegistration() bool {
 	return r.Open
 }
+
+func (r *Trypod) GetToken(user *model.User) (*model.Token, error) {
+	return nil, nil
+}
