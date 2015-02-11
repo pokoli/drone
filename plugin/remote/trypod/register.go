@@ -9,6 +9,7 @@ var (
 	trypodURL   = config.String("trypod-url", "")
 	trypodOwner = config.String("trypod-owner", "")
 	trypodOpen  = config.Bool("trypod-open", false)
+	trypodToken = config.String("trypod-token", "")
 )
 
 func Register() {
@@ -20,6 +21,7 @@ func Register() {
 			*trypodURL,
 			*trypodOwner,
 			*trypodOpen,
+			*trypodToken,
 		),
 	)
 }

@@ -1,13 +1,18 @@
 package trypod
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"time"
-	"encoding/json"
 
+	"gopkg.in/yaml.v1"
+
+	"github.com/drone/drone/plugin/notify"
+	"github.com/drone/drone/plugin/notify/webhook"
+	"github.com/drone/drone/shared/build/script"
 	"github.com/drone/drone/shared/model"
 )
 
@@ -15,12 +20,13 @@ type Trypod struct {
 	url   string
 	owner string
 	Open  bool
+	token string
 }
 
 type User struct {
 	Id       int64  `json:"id"`
 	UserName string `json:"username"`
-	RealName string `json:realname"`
+	RealName string `json:"realname"`
 	Address  string `json:"address"`
 }
 
@@ -38,11 +44,12 @@ type Commit struct {
 	Description string `json:"description"`
 }
 
-func New(url string, owner string, open bool) *Trypod {
+func New(url string, owner string, open bool, token string) *Trypod {
 	return &Trypod{
-		url: url,
-		owner:   owner,
-		Open:    open,
+		url:   url,
+		owner: owner,
+		Open:  open,
+		token: token,
 	}
 }
 
@@ -137,7 +144,29 @@ func (r *Trypod) GetScript(user *model.User, repo *model.Repo, hook *model.Hook)
 		return nil, err
 	}
 	defer resp.Body.Close()
-	return ioutil.ReadAll(resp.Body)
+	var yml []byte
+	yml, err = ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	script, _ := script.ParseBuild(string(yml))
+	if script.Notifications == nil {
+		script.Notifications = &notify.Notification{}
+	}
+	if script.Notifications.Webhook == nil {
+		script.Notifications.Webhook = &webhook.Webhook{}
+	}
+	webhook := script.Notifications.Webhook
+	webhook.URL = []string{r.url + "/notify/" + r.token}
+	webhook.Success = new(bool)
+	*webhook.Success = true
+	webhook.Failure = new(bool)
+	*webhook.Failure = true
+	yml, err = yaml.Marshal(script)
+	if err != nil {
+		return nil, err
+	}
+	return yml, nil
 }
 
 func (r *Trypod) Activate(user *model.User, repo *model.Repo, link string) error {
