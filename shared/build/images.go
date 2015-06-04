@@ -221,11 +221,12 @@ var builders = map[string]*image{
 	"php5.4": {Tag: "bradrydzewski/php:5.4"},
 
 	// Python build images
-	"python":    {Tag: "bradrydzewski/python:2.7"},
-	"python2.7": {Tag: "bradrydzewski/python:2.7"},
-	"python3.2": {Tag: "bradrydzewski/python:3.2"},
-	"python3.3": {Tag: "bradrydzewski/python:3.3"},
-	"pypy":      {Tag: "bradrydzewski/python:pypy"},
+	"python":     {Tag: "bradrydzewski/python:2.7"},
+	"python2.7":  {Tag: "bradrydzewski/python:2.7"},
+	"python3.2":  {Tag: "bradrydzewski/python:3.2"},
+	"python3.3":  {Tag: "bradrydzewski/python:3.3"},
+	"pypy":       {Tag: "bradrydzewski/python:pypy"},
+	"python_all": {Tag: "bradrydzewski/python:all"},
 
 	// Ruby build images
 	"ruby":      {Tag: "bradrydzewski/ruby:2.0.0"},
