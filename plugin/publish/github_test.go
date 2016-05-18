@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"gopkg.in/yaml.v1"
+	"gopkg.in/yaml.v2"
 )
 
 var validcfg = map[string]interface{}{

@@ -7,7 +7,7 @@ import (
 	"runtime/debug"
 	"time"
 
-	"code.google.com/p/go-uuid/uuid"
+	"github.com/pborman/uuid"
 	"code.google.com/p/go.net/context"
 	"github.com/drone/drone/plugin/notify"
 	"github.com/drone/drone/server/blobstore"

@@ -10,7 +10,7 @@ import (
 	"time"
 
 	"github.com/docker/docker/pkg/archive"
-	"github.com/docker/docker/pkg/parsers"
+//	"github.com/docker/docker/pkg/parsers"
 )
 
 type Images struct {
@@ -63,11 +63,16 @@ func (c *ImageService) Create(image string) error {
 }
 
 func (c *ImageService) Pull(image string) error {
-	name, tag := parsers.ParseRepositoryTag(image)
+	var out io.Writer
+	/* Commented as ParseRepositoryTag is no longer available
+    name, tag := parsers.ParseRepositoryTag(image)
 	if len(tag) == 0 {
 		tag = DEFAULTTAG
 	}
-	return c.PullTag(name, tag)
+    */
+	path := fmt.Sprintf("/images/create?fromImage=%s", image)
+	return c.stream("POST", path, nil, out, http.Header{})
+	//return c.PullTag(name, tag)
 }
 
 func (c *ImageService) PullTag(name, tag string) error {

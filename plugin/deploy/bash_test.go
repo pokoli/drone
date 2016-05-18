@@ -6,7 +6,7 @@ import (
 
 	"github.com/drone/drone/shared/build/buildfile"
 
-	"gopkg.in/yaml.v1"
+	"gopkg.in/yaml.v2"
 )
 
 // emulate Build struct

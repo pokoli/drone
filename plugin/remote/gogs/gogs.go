@@ -1,13 +1,13 @@
 package gogs
 
 import (
-	"fmt"
-	"io/ioutil"
+//	"fmt"
+//	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
 	"strings"
-	"time"
+//  "time"
 
 	"github.com/drone/drone/shared/model"
 	"github.com/gogits/go-gogs-client"
@@ -157,6 +157,7 @@ func (r *Gogs) Activate(user *model.User, repo *model.Repo, link string) error {
 // ParseHook parses the post-commit hook from the Request body
 // and returns the required data in a standard format.
 func (r *Gogs) ParseHook(req *http.Request) (*model.Hook, error) {
+    /* Commented out as ParseHook is not defined
 	defer req.Body.Close()
 	var payloadbytes, _ = ioutil.ReadAll(req.Body)
 	var payload, err = gogs.ParseHook(payloadbytes)
@@ -182,6 +183,8 @@ func (r *Gogs) ParseHook(req *http.Request) (*model.Hook, error) {
 		Timestamp: time.Now().UTC().String(),
 		Message:   payload.Commits[0].Message,
 	}, nil
+    */
+    return nil, nil
 }
 
 func (r *Gogs) OpenRegistration() bool {

@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"gopkg.in/yaml.v1"
+	"gopkg.in/yaml.v2"
 
 	"github.com/drone/drone/plugin/deploy"
 	"github.com/drone/drone/plugin/notify"

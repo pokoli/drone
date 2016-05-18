@@ -7,7 +7,24 @@ all: build
 deps:
 	# which npm && npm -g install uglify-js less autoprefixer
 	go get github.com/GeertJohan/go.rice/rice
-	go get -t -v ./...
+	go get -u golang.org/x/tools/cmd/cover
+	go get -u github.com/eknkc/amber/...
+	go get -u github.com/eknkc/amber
+	go get -u github.com/jteeuwen/go-bindata/...
+	go get -u github.com/elazarl/go-bindata-assetfs/...
+	go get -u github.com/dchest/jsmin
+	go get -u github.com/franela/goblin
+	go get -u github.com/docker/go-units
+	go get -u github.com/thoj/go-ircevent
+	go get -u github.com/Bugagazavr/go-gitlab-client
+	go get -u github.com/goji/context
+	go get -u github.com/gorilla/websocket
+	go get -u github.com/kardianos/osext
+	go get -u github.com/BurntSushi/migration
+	go get -u github.com/pborman/uuid
+	go get -u github.com/drone/go-github/...
+	go get -u github.com/drone/go-bitbucket/...
+	go get -d github.com/docker/docker
 
 test:
 	@test -z "$(shell find . -name '*.go' | xargs gofmt -l)" || (echo "Need to run 'go fmt ./...'"; exit 1)

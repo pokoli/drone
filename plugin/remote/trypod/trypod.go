@@ -8,7 +8,7 @@ import (
 	"time"
 	"encoding/json"
 
-	"gopkg.in/yaml.v1"
+	"gopkg.in/yaml.v2"
 
 	"github.com/drone/drone/shared/model"
 	"github.com/drone/drone/shared/build/script"

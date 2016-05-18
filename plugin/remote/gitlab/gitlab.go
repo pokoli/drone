@@ -177,7 +177,7 @@ func (r *Gitlab) Activate(user *model.User, repo *model.Repo, link string) error
 	link += "?owner=" + repo.Owner + "&name=" + repo.Name
 
 	// add the hook
-	return client.AddProjectHook(path, link, true, false, true)
+	return client.AddProjectHook(path, link, true, false, true, false)
 }
 
 // ParseHook parses the post-commit hook from the Request body

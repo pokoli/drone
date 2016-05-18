@@ -16,8 +16,8 @@ import (
 	"time"
 
 	"github.com/docker/docker/pkg/stdcopy"
-	"github.com/docker/docker/pkg/term"
-	"github.com/docker/docker/utils"
+	//"github.com/docker/docker/pkg/term"
+	//"github.com/docker/docker/utils"
 )
 
 const (
@@ -347,6 +347,8 @@ func (c *Client) stream(method, path string, in io.Reader, out io.Writer, header
 	}
 
 	// copy the output stream to the writer
+    // Comented out as it breaks the build
+    /*
 	if resp.Header.Get("Content-Type") == "application/json" {
 		var terminalFd = os.Stdin.Fd()
 		var isTerminal = term.IsTerminal(terminalFd)
@@ -355,6 +357,7 @@ func (c *Client) stream(method, path string, in io.Reader, out io.Writer, header
 		// us at the moment, and I don't feel like refactoring
 		return utils.DisplayJSONMessagesStream(resp.Body, out, terminalFd, isTerminal)
 	}
+    */
 	// otherwise plain text
 	if _, err := io.Copy(out, resp.Body); err != nil {
 		return err
